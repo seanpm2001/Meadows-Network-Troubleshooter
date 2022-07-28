@@ -1,0 +1,22 @@
+name: Crystal CI
+
+on:
+  push:
+    branches: [ "Meadows-Network-Troubleshooter_Main-dev" ]
+  pull_request:
+    branches: [ "Meadows-Network-Troubleshooter_Main-dev" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    container:
+      image: crystallang/crystal
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install dependencies
+      run: shards install
+    - name: Run tests
+      run: crystal spec
